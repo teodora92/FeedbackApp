@@ -532,6 +532,9 @@ function displayFach(kuerzel) {
 			if(jqXHR.status == 0) {
 				alert('might work');
 			}
+			else {
+				alert('error');
+			}
 		}
 		
 	});
