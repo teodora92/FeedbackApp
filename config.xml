@@ -20,5 +20,18 @@
 	<preference name="show-splash-screen-spinner" value="true" />
 	<preference name="splash-screen-duration" value="1500" />
 	
+	<!--Icon support from PGB-->
+	<icon src="res/img/icons/android/ldpi/icLauncher.png" gap:platform="android" gap:density="ldpi" />
+	<icon src="res/img/icons/android/mdpi/icLauncher.png" gap:platform="android" gap:density="mdpi" />
+	<icon src="res/img/icons/android/hdpi/icLauncher.png" gap:platform="android" gap:density="hdpi" />
+	<icon src="res/img/icons/android/xhdpi/icLauncher.png" gap:platform="android" gap:density="xhdpi" />
+	
+	<icon src="res/img/icons/apple/appletouchiconiphone.png" gap:platform="ios" width="57" height="57" />
+	<icon src="res/img/icons/apple/appletouchiconipad.png" gap:platform="ios" width="72" height="72" />
+	<icon src="res/img/icons/apple/appletouchiconiphone4.png" gap:platform="ios" width="114" height="114" />
+
+	<!-- retina iPad support: PhoneGap 2.5.0+ only -->
+	<icon src="res/img/icons/apple/appletouchiconipad3.png" gap:platform="ios" width="144" height="144" />
+	
 	
 </widget>

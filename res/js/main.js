@@ -619,14 +619,8 @@ function bindEvents() {
 			document.addEventListener("backButton", function() {
 				//alert('back button pressed');
 				//goLeft();
-				if(document.getElementById("infoDetailPage").getAttribute('class') == 'detailPageVis') {
-					$('#btnNext').click();
-				}
-				else if(document.getElementById("secondDetailPage").getAttribute('class') == 'detailPageVis') {
-					$('#btnNext').click();
-				}
-				else if(document.getElementById("detailPage").getAttribute('class') == 'detailPageVis') {
-					device.exitApp();
+				if(document.getElementById("detailPage").getAttribute('class') == 'detailPageVis') {
+					document.getElementById("detailPage").setAttribute('class', 'detailPage');
 				}
 				else if(document.getElementById("detailPage").getAttribute('class') == 'detailPage') {
 					device.exitApp();
