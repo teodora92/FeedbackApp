@@ -21,6 +21,8 @@
 	<preference name="splash-screen-duration" value="1500" />
 	
 	<!--Icon support from PGB-->
+	<icon src="res/img/icons/icon.png" />
+	
 	<icon src="res/img/icons/android/ldpi/icLauncher.png" gap:platform="android" gap:density="ldpi" />
 	<icon src="res/img/icons/android/mdpi/icLauncher.png" gap:platform="android" gap:density="mdpi" />
 	<icon src="res/img/icons/android/hdpi/icLauncher.png" gap:platform="android" gap:density="hdpi" />
