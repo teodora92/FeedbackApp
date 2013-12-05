@@ -533,7 +533,7 @@ function displayFach(kuerzel) {
 				alert('might work');
 			}
 			else {
-				alert('error');
+				alert('Post doesn\'t work');
 			}
 		}
 		
