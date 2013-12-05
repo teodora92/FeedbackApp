@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<widget xmlns = "http://www.w3.org/ns/widgets"
+		xmlns:gap = "http://phonegap.com/ns/1.0"
+        id = "com.damiangawenda.feedbackapp"
+        version = "0.0.1">
+    <name>FeedbackApp</name>
+    <description>
+        Mobile Anwendung Fächer Feedback
+    </description>
+    <author>
+        Teodora Petrisor, Damian Gawenda
+    </author>
+    <preference name="permissions" value="none" />
+	<preference name="phonegap-version" value="2.9.0" />
+	<preference name="orientation" value="portrait" />
+	<preference name="android-installLocation" value="auto" />
+	
+	
+	<!--Splashscreen support from PGB-->
+	<preference name="show-splash-screen-spinner" value="true" />
+	<preference name="splash-screen-duration" value="1500" />
+	
+	
+</widget>
