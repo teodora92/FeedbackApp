@@ -706,7 +706,7 @@ function bindEvents() {
 	
 	document.addEventListener('DOMContentLoaded', function () { 
 		detailScroll = new iScroll('detailScroll',  {
-			zoom: false, 
+			zoom: true, 
 			hScrollbar: false, 
 			vScrollbar: false,
 			useTransform: false,
