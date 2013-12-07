@@ -506,7 +506,7 @@ function renderMap() {
 
 function displayFach(kuerzel) {
 
-	$('#detailContent').remove();
+	$('#detailContent').empty();
 	$('#detailScroll').append('<div id="detailContent"></div>');
 	
 	$('#detailContent').append('<h1>Bewertungen kommen hier</h1>');
