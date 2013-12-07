@@ -521,9 +521,24 @@ function displayFach(kuerzel) {
 	$('.slider').change(function() {
 		$(this).next().val($(this).val());
 		detailScroll.refresh();
+		setTimeout(function() {
+			detailScroll.refresh();
+		}, 2000);
 	});
 	
+	$('*').click(function() {
+		if($(this).prop('tagName') == 'TEXTAREA') {
+		
+		}
+		else {
+			$('textarea').blur();
+		}
+	});
 	
+	$('textarea').click(function(e) {
+		//alert('get here, ' + $(this).prop('tagName'));
+		e.stopPropagation();
+	});
 		
 	detailScroll.refresh();
 	setTimeout(function() {
@@ -721,13 +736,13 @@ function bindEvents() {
 			hScrollbar: false, 
 			vScrollbar: false,
 			useTransform: false,
-			/*onBeforeScrollStart: function (e) {
+			onBeforeScrollStart: function (e) {
 				var target = e.target;
 				while (target.nodeType != 1) target = target.parentNode;
 
 				//if (target.tagName != 'SELECT' && target.tagName != 'INPUT' && target.tagName != 'TEXTAREA')
 				//	e.preventDefault();
-			}*/
+			}
 		});
 		secondDetailScroll = new iScroll('secondDetailScroll',  {
 			zoom: false, 
@@ -742,7 +757,7 @@ function bindEvents() {
 					e.preventDefault();
 			}
 		});
-		
+		bindEvents();
 		loadData();
 	}, false);
 
