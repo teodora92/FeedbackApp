@@ -506,7 +506,7 @@ function renderMap() {
 
 function displayFach(kuerzel) {
 
-	//$('#detailContent').empty();
+	$('#detailContent').empty();
 	$('#detailContent').append('<h1>Bewertungen kommen hier</h1>');
 
 	$('#detailContent').append('<form id="bewertungForm">Slider: 1<input type="range" name="points" min="1" max="5">5<input type="submit"><br></form>');
@@ -706,7 +706,7 @@ function bindEvents() {
 	//document.addEventListener('touchmove', function (e) { e.preventDefault(); }, false);
 	
 	document.addEventListener('DOMContentLoaded', function () { 
-		/*detailScroll = new iScroll('detailScroll',  {
+		detailScroll = new iScroll('detailScroll',  {
 			zoom: true, 
 			hScrollbar: false, 
 			vScrollbar: false,
@@ -718,7 +718,7 @@ function bindEvents() {
 				if (target.tagName != 'SELECT' && target.tagName != 'INPUT' && target.tagName != 'TEXTAREA' $$ target.tagName != 'RANGE')
 					e.preventDefault();
 			}
-		});*/
+		});
 		secondDetailScroll = new iScroll('secondDetailScroll',  {
 			zoom: false, 
 			hScrollbar: false, 
