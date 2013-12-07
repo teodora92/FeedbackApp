@@ -506,9 +506,7 @@ function renderMap() {
 
 function displayFach(kuerzel) {
 
-	alert('get here');
 	$('#detailContent').empty();
-	alert('now should start writing');
 	$('#detailContent').append('<h1>Bewertungen kommen hier</h1>');
 
 	$('#detailContent').append('<form id="bewertungForm"></form>');
@@ -516,7 +514,9 @@ function displayFach(kuerzel) {
 	
 	$('#bewertungForm').append('<h2>Freie Texteingabe:</h2><textarea></textarea><br>');
 	
+	
 	document.getElementById("detailPage").setAttribute('class', 'detailPageVis');
+	alert($('#detailContent').html());
 	
 	$('.slider').next().val('3');
 	
@@ -526,6 +526,7 @@ function displayFach(kuerzel) {
 	});
 	
 	$('.slider').bind('touchend', function(e) {
+		// here we should make only for android, ios no problem
 		detailScroll.scrollTo(0, 1, 0, true);
 	});
 	
