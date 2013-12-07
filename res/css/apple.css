@@ -1,9 +1,6 @@
 @media all {
 
-* {
-	-webkit-user-select: none;
-	user-select: none;
-}
+
 
 body,ul,li {
 	padding:0;
