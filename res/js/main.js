@@ -520,6 +520,7 @@ function displayFach(kuerzel) {
 	
 	$('.slider').change(function() {
 		$(this).next().val($(this).val());
+		detailScroll.refresh();
 	});
 	
 	
@@ -720,13 +721,13 @@ function bindEvents() {
 			hScrollbar: false, 
 			vScrollbar: false,
 			useTransform: false,
-			onBeforeScrollStart: function (e) {
+			/*onBeforeScrollStart: function (e) {
 				var target = e.target;
 				while (target.nodeType != 1) target = target.parentNode;
 
-				if (target.tagName != 'SELECT' && target.tagName != 'INPUT' && target.tagName != 'TEXTAREA')
-					e.preventDefault();
-			}
+				//if (target.tagName != 'SELECT' && target.tagName != 'INPUT' && target.tagName != 'TEXTAREA')
+				//	e.preventDefault();
+			}*/
 		});
 		secondDetailScroll = new iScroll('secondDetailScroll',  {
 			zoom: false, 
