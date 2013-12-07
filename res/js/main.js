@@ -520,7 +520,8 @@ function displayFach(kuerzel) {
 	
 	$('.slider').change(function() {
 		$(this).next().val($(this).val());
-		$(this).blur();
+		$('textarea').focus();
+		$('textarea').blur();
 	});
 	
 	$('*').click(function() {
