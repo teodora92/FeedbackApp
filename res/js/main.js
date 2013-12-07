@@ -501,11 +501,18 @@ function renderMap() {
 		
 }
 
+
+
+
 function displayFach(kuerzel) {
 
 	$('#detailContent').empty();
 	$('#detailContent').append('<h1>Bewertungen kommen hier</h1>');
+
+	$('#detailContent').append('<form id="bewertungForm">Slider: 1<input type="range" name="points" min="1" max="5">5<input type="submit"><br></form>');
+	$('#bewertungForm').append('Text: <input type="text" name="text"><br>');
 	document.getElementById("detailPage").setAttribute('class', 'detailPageVis');
+		
 		
 	detailScroll.refresh();
 	setTimeout(function() {
@@ -530,10 +537,10 @@ function displayFach(kuerzel) {
 		error: function(jqXHR, textStatus, errorThrown) {
 			//alert(jqXHR.status + " " + textStatus + " " + errorThrown);
 			if(jqXHR.status == 0) {
-				alert('might work');
+				//alert('might work');
 			}
 			else {
-				alert('Post doesn\'t work');
+				//alert('Post doesn\'t work');
 			}
 		}
 		
@@ -589,11 +596,26 @@ function displaySelectMenu() {
 	});
 	
 	
-	mainScroll = new iScroll('scroller',  {zoom: false, hScrollbar: false, vScrollbar: true} );
+	mainScroll = new iScroll('scroller',  {
+		zoom: false, 
+		hScrollbar: false, 
+		vScrollbar: true,
+		useTransform: false,
+		onBeforeScrollStart: function (e) {
+			var target = e.target;
+			while (target.nodeType != 1) target = target.parentNode;
+
+			if (target.tagName != 'SELECT' && target.tagName != 'INPUT' && target.tagName != 'TEXTAREA')
+				e.preventDefault();
+		}
+		
+	});
+	
 }
 
-function bindEvents() {
 
+
+function bindEvents() {
 	
 }
 
@@ -683,10 +705,34 @@ function bindEvents() {
 	document.addEventListener('touchmove', function (e) { e.preventDefault(); }, false);
 	
 	document.addEventListener('DOMContentLoaded', function () { 
-		detailScroll = new iScroll('detailScroll', {zoom: true, hScrollbar: false, vScrollbar: false});
-		secondDetailScroll = new iScroll('secondDetailScroll', {zoom: true, hScrollbar: false, vScrollbar: false});
+		detailScroll = new iScroll('detailScroll',  {
+			zoom: false, 
+			hScrollbar: false, 
+			vScrollbar: false,
+			useTransform: false,
+			onBeforeScrollStart: function (e) {
+				var target = e.target;
+				while (target.nodeType != 1) target = target.parentNode;
+
+				if (target.tagName != 'SELECT' && target.tagName != 'INPUT' && target.tagName != 'TEXTAREA')
+					e.preventDefault();
+			}
+		});
+		secondDetailScroll = new iScroll('secondDetailScroll',  {
+			zoom: false, 
+			hScrollbar: false, 
+			vScrollbar: false,
+			useTransform: false,
+			onBeforeScrollStart: function (e) {
+				var target = e.target;
+				while (target.nodeType != 1) target = target.parentNode;
+
+				if (target.tagName != 'SELECT' && target.tagName != 'INPUT' && target.tagName != 'TEXTAREA')
+					e.preventDefault();
+			}
+		});
+		
 		loadData();
-		//bindEvents();
 	}, false);
 
 	document.addEventListener("resume", function() {
