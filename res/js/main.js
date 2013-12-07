@@ -520,7 +520,7 @@ function displayFach(kuerzel) {
 	
 	$('.slider').change(function() {
 		$(this).next().val($(this).val());
-		detailScroll.scrollTo(0, 1, 5, true)
+		detailScroll.scrollTo(0, 0.5, 5, true)
 	});
 	
 	$('*').click(function() {
