@@ -506,7 +506,7 @@ function renderMap() {
 
 function displayFach(kuerzel) {
 
-	$('#detailContent').empty();
+	//$('#detailContent').empty();
 	$('#detailContent').append('<h1>Bewertungen kommen hier</h1>');
 
 	$('#detailContent').append('<form id="bewertungForm">Slider: 1<input type="range" name="points" min="1" max="5">5<input type="submit"><br></form>');
