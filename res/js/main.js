@@ -509,11 +509,20 @@ function displayFach(kuerzel) {
 	$('#detailContent').empty();
 	$('#detailContent').append('<h1>Bewertungen kommen hier</h1>');
 
-	$('#detailContent').append('<form id="bewertungForm">Slider: 1<input type="range" name="points" min="1" max="5">5<input type="submit"><br></form>');
-	$('#bewertungForm').append('Text: <input type="text" name="text"><br>');
+	$('#detailContent').append('<form id="bewertungForm"></form>');
+	$('#bewertungForm').append('<h2>Frage mit Slider:</h2><input class="slider" type="range" name="slider" min=1 max=5><input class="sliderText" type="text" disabled><br>');
+	
+	$('#bewertungForm').append('<h2>Freie Texteingabe:</h2><textarea></textarea><br>');
 	
 	document.getElementById("detailPage").setAttribute('class', 'detailPageVis');
-		
+	
+	$('.slider').next().val('3');
+	
+	$('.slider').change(function() {
+		$(this).next().val($(this).val());
+	});
+	
+	
 		
 	detailScroll.refresh();
 	setTimeout(function() {
