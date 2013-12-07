@@ -506,7 +506,9 @@ function renderMap() {
 
 function displayFach(kuerzel) {
 
+	alert('get here');
 	$('#detailContent').empty();
+	alert('now should start writing');
 	$('#detailContent').append('<h1>Bewertungen kommen hier</h1>');
 
 	$('#detailContent').append('<form id="bewertungForm"></form>');
@@ -524,7 +526,6 @@ function displayFach(kuerzel) {
 	});
 	
 	$('.slider').bind('touchend', function(e) {
-		alert('released');
 		detailScroll.scrollTo(0, 1, 0, true);
 	});
 	
