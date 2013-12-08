@@ -537,7 +537,7 @@ function displayFach(kuerzel) {
 		}
 		else {
 			$('textarea').blur();
-			alert('should blur here');
+			//alert('should blur here');
 		}
 		
 	});
