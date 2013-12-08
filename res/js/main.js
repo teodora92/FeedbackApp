@@ -539,12 +539,16 @@ function displayFach(kuerzel) {
 		else {
 			$('textarea').blur();
 		}
+		alert(document.activeElement);
 	});
 	
 	$('textarea').click(function(e) {
 		//alert('get here, ' + $(this).prop('tagName'));
 		e.stopPropagation();
+		alert(document.activeElement);
 	});
+	
+	
 		
 	detailScroll.refresh();
 	setTimeout(function() {
@@ -648,6 +652,8 @@ function displaySelectMenu() {
 
 
 function bindEvents() {
+	alert(document.activeElement);
+	
 	
 }
 
