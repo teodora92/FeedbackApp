@@ -539,7 +539,7 @@ function displayFach(kuerzel) {
 		else {
 			$('textarea').blur();
 		}
-		alert(document.activeElement);
+		//alert(document.activeElement);
 	});
 	
 	$('textarea').click(function(e) {
