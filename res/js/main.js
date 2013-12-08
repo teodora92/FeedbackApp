@@ -652,6 +652,8 @@ function displaySelectMenu() {
 
 function bindEvents() {
 	
+	
+	
 }
 
 
@@ -670,7 +672,8 @@ function bindEvents() {
 
 			// check if android device
 			if(navigator.userAgent.match(/Android/i)) {
-			
+				$('*').prop('webkitUserModify', 'none');
+				$('*').prop('webkitUserSelect', 'none');
 			}
 
 			document.addEventListener("backButton", function() {
