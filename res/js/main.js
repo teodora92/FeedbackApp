@@ -518,7 +518,6 @@ function displayFach(kuerzel) {
 	
 	
 	document.getElementById("detailPage").setAttribute('class', 'detailPageVis');
-	alert($('#detailContent').html());
 	
 	$('.slider').next().val('3');
 	
@@ -529,7 +528,7 @@ function displayFach(kuerzel) {
 	
 	$('.slider').bind('touchend', function(e) {
 		// here we should make only for android, ios no problem
-		//detailScroll.scrollTo(0, 1, 0, true);
+		detailScroll.scrollTo(0, 1, 0, true);
 	});
 	
 	$('*').click(function() {
@@ -538,25 +537,25 @@ function displayFach(kuerzel) {
 		}
 		else {
 			$('textarea').blur();
+			alert('should blur here');
 		}
-		//alert(document.activeElement);
+		
 	});
 	
 	$('textarea').click(function(e) {
 		//alert('get here, ' + $(this).prop('tagName'));
 		e.stopPropagation();
-		alert(document.activeElement);
 	});
 	
 	
 		
-	/*detailScroll.refresh();
+	detailScroll.refresh();
 	setTimeout(function() {
 		detailScroll.refresh();
 	}, 2000);
 	setTimeout(function() {
 		detailScroll.refresh();
-	}, 5000);*/
+	}, 5000);
 
 	// if this doesn't work, do a proxy over internet services or another server
 	$.ajax({
@@ -652,8 +651,6 @@ function displaySelectMenu() {
 
 
 function bindEvents() {
-	alert(document.activeElement);
-	
 	
 }
 
@@ -743,7 +740,7 @@ function bindEvents() {
 	//document.addEventListener('touchmove', function (e) { e.preventDefault(); }, false);
 	
 	document.addEventListener('DOMContentLoaded', function () { 
-		/*detailScroll = new iScroll('detailScroll',  {
+		detailScroll = new iScroll('detailScroll',  {
 			zoom: true, 
 			hScrollbar: false, 
 			vScrollbar: false,
@@ -755,7 +752,7 @@ function bindEvents() {
 				//if (target.tagName != 'SELECT' && target.tagName != 'INPUT' && target.tagName != 'TEXTAREA')
 				//	e.preventDefault();
 			}
-		});*/
+		});
 		secondDetailScroll = new iScroll('secondDetailScroll',  {
 			zoom: false, 
 			hScrollbar: false, 
