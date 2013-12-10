@@ -10,11 +10,12 @@ function Mensa(mensaID, label, adress, openTime, url, lat, lon, email, externalI
 	this.externalID = externalID;
 }
 
-function Fach(bezeichnung, nachname, vorname, fachkuerzel) {
+function Fach(bezeichnung, nachname, vorname, fachkuerzel, dozentkuerzel) {
 	this.bezeichnung = bezeichnung;
 	this.nachname = nachname;
 	this.vorname = vorname;
 	this.fachkuerzel = fachkuerzel;
+	this.dozentkuerzel = dozentkuerzel;
 }
 
 function loadData() {
@@ -23,6 +24,7 @@ function loadData() {
 		//alert('get here?');
 	}
 
+	
 	$.ajax({
 		type: 'GET',
 		url: 'http://edb.gm.fh-koeln.de/services/evaluation_service.jsp?call=getFaecher',
@@ -34,10 +36,10 @@ function loadData() {
 		error: function(xhr, textStatus, thrownError) {
 			//alert(thrownError);
 			if(textStatus == "timeout") {
-				alert('Bitte verbinden Sie sich mit dem Internet um die App benutzen zu können');
+				//alert('Bitte verbinden Sie sich mit dem Internet um die App benutzen zu können');
 			}
 			else {
-				alert('Die App muss neu gestartet werden!');
+				//alert('Die App muss neu gestartet werden!');
 			}
 		},
 		jsonpCallback: 'callbackjson',
@@ -50,7 +52,7 @@ function loadData() {
 
 function parseJSON(data) {
 
-	var bez, nachname, vorname, kuerzel;
+	var bez, nachname, vorname, fachkuerzel, dozentkuerzel;
 	var fach;
 	fachArray = [];
 	
@@ -59,8 +61,9 @@ function parseJSON(data) {
 		
 		nachname = data[i].NACHNAME;
 		vorname = data[i].Vorname;
-		kuerzel = data[i].fachkuerzel;
-		fach = new Fach(bez, nachname, vorname, kuerzel);
+		fachkuerzel = data[i].fachkuerzel;
+		dozentkuerzel = data[i].dozentkuerzel;
+		fach = new Fach(bez, nachname, vorname, fachkuerzel, dozentkuerzel);
 		fachArray.push(fach);
 	}
 	
@@ -78,7 +81,7 @@ function displayFaecher() {
 	
 	$('#wrapper').prepend('<h2>Wähle Dein Fach</h2>');
 	
-	var bez, nachname, vorname, kuerzel;
+	var bez, nachname, vorname, fachkuerzel, dozentkuerzel;
 	var fach;
 	
 	for(i = 0; i < fachArray.length; ++i) {
@@ -86,17 +89,27 @@ function displayFaecher() {
 		bez = fach.bezeichnung;
 		nachname = fach.nachname;
 		vorname = fach.vorname;
-		kuerzel = fach.fachkuerzel;
+		fachkuerzel = fach.fachkuerzel;
+		dozentkuerzel = fach.dozentkuerzel;
 		
-		$('#thelist').append('<li id="listItem'+i+'" class="listItem"><span  class="listTitle">' +  bez + ' - ' + kuerzel +'</span><br/>'+nachname+', '+vorname+'</li>');
-		$('#listItem'+i).data('kuerzel', kuerzel);
+		$('#thelist').append('<li id="listItem'+i+'" class="listItem"><span  class="listTitle">' +  bez + ' - ' + fachkuerzel +'</span><br/>'+nachname+', '+vorname+'</li>');
+		$('#listItem'+i).data('fachkuerzel', fachkuerzel);
+		$('#listItem'+i).data('dozentkuerzel', dozentkuerzel);
+		$('#listItem'+i).data('nachname', nachname);
+		$('#listItem'+i).data('vorname', vorname);
+		$('#listItem'+i).data('bez', bez);
 	}
 	
 	$('.listItem').unbind('click');
 	
 	$('.listItem').click(function() {
-		var kuerzel = $(this).data('kuerzel');
-		displayFach(kuerzel);
+		var fachkuerzel = $(this).data('fachkuerzel');
+		var dozentkuerzel = $(this).data('dozentkuerzel');
+		var nachname = $(this).data('nachname');
+		var vorname = $(this).data('vorname');
+		var bez = $(this).data('bez');
+		
+		displayFach(fachkuerzel, dozentkuerzel, nachname, vorname, bez);
 	});
 	
 	
@@ -504,19 +517,27 @@ function renderMap() {
 
 
 
-function displayFach(kuerzel) {
+function displayFach(fachkuerzel, dozentkuerzel, nachname, vorname, bez) {
 
 	$('#detailContent').empty();
 	$('#detailScroll').append('<div id="detailContent"></div>');
 	
-	$('#detailContent').append('<h1>Bewertungen kommen hier</h1>');
+	$('#detailContent').append('<h1>Evaluierung des Fachs '+fachkuerzel+'</h1>');
 
-	$('#detailContent').append('<form id="bewertungForm"></form>');
-	$('#bewertungForm').append('<h2>Frage mit Slider:</h2><br><input class="slider" type="range" name="slider" min=1 max=5><input class="sliderText" type="text" disabled><br>');
+	$('#detailContent').append('<form action="http://edb.gm.fh-koeln.de/services/evaluation_service.jsp?call=setEvaluation" method="POST" id="bewertungForm"></form>');
 	
-	$('#bewertungForm').append('<h2>Freie Texteingabe:</h2><br><textarea></textarea><br>');
+	$('#bewertungForm').append('<input name="fachkuerzel" value="'+fachkuerzel+'" style="display:none">');
+	$('#bewertungForm').append('<input name="dozentkuerzel" value="'+dozentkuerzel+'" style="display:none">');
 	
+	$('#bewertungForm').append('<h2>1.	Die Lerninhalte und Methoden wurden für mich klar erkennbar dargestellt</h2><br><input class="slider" type="range" name="frage1" min=1 max=5><input class="sliderText" type="text" disabled><br>');
+	$('#bewertungForm').append('<h2>2.	Die Dozentin/der Dozent führt die Lehrveranstaltung engagiert durch:</h2><br><input class="slider" type="range" name="frage2" min=1 max=5><input class="sliderText" type="text" disabled><br>');
+	$('#bewertungForm').append('<h2>3.	Inhalte der Veranstaltung waren für mich interessant und neu.</h2><br><input class="slider" type="range" name="frage3" min=1 max=5><input class="sliderText" type="text" disabled><br>');
 	
+	$('#bewertungForm').append('<h2>Welche Themen wurden zu kurz behandelt?</h2><textarea name="frage4" class="textarea"></textarea><br>');
+	$('#bewertungForm').append('<h2>Welche Themen könnten gekürzt werden?</h2><textarea name="frage5" class="textarea"></textarea><br>');
+	$('#bewertungForm').append('<h2>Sonstige Anmerkungen oder Verbesserungsvorschläge!</h2><textarea name="frage6" class="textarea"></textarea><br>');
+	
+	$('#detailContent').append('<button id="btnSubmit">Submit</button>');
 	document.getElementById("detailPage").setAttribute('class', 'detailPageVis');
 	
 	$('.slider').next().val('3');
@@ -548,6 +569,39 @@ function displayFach(kuerzel) {
 	});
 	
 	
+	$('#btnSubmit').click(function(e) {
+		
+		var data = $('#bewertungForm').serializeArray();
+		//console.log(data);
+		$.ajax({
+			type: 'POST',
+			crossDomain: true,
+			url: 'http://edb.gm.fh-koeln.de/services/evaluation_service.jsp?call=setEvaluation',
+			data: data,
+			success: function(data, textStatus, jqXHR) {
+				//alert('yes');
+				//$('#listItem' + feedback_id).data('votes', votes);
+				//populateDetail(object); 
+				alert('works');
+			},
+			error: function(jqXHR, textStatus, errorThrown) {
+				//alert(jqXHR.status + " " + textStatus + " " + errorThrown);
+				if(jqXHR.status == 0) {
+					alert('might work');
+				}
+				else {
+					//alert('Post doesn\'t work');
+				}
+				
+		}
+		
+	});
+		
+		
+		//$('#bewertungForm').submit();
+		//e.preventDefault();
+
+	});
 		
 	detailScroll.refresh();
 	setTimeout(function() {
@@ -557,8 +611,11 @@ function displayFach(kuerzel) {
 		detailScroll.refresh();
 	}, 5000);
 
+	
+	
+	// fachkuerzel, dozentkuerzel, 6 questions
 	// if this doesn't work, do a proxy over internet services or another server
-	$.ajax({
+	/*$.ajax({
 		type: 'POST',
 		crossDomain: true,
 		url: 'http://edb.gm.fh-koeln.de/services/evaluation_service.jsp?call=setEvaluation',
@@ -579,7 +636,7 @@ function displayFach(kuerzel) {
 			}
 		}
 		
-	});
+	});*/
 }
 
 function displaySelectMenu() {
@@ -703,6 +760,7 @@ function bindEvents() {
 			else if (direction =="right") {
 				//alert('go to mensa list page');
 				//$('#btnMensaList').click();
+				// here should unfocus input if going back
 				document.getElementById('detailPage').setAttribute('class', 'detailPage');
 				
 				
