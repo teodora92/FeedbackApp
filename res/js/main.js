@@ -573,6 +573,7 @@ function displayFach(fachkuerzel, dozentkuerzel, nachname, vorname, bez) {
 		
 		var data = $('#bewertungForm').serializeArray();
 		//console.log(data);
+		alert('click once');
 		$.ajax({
 			type: 'POST',
 			crossDomain: true,
@@ -588,8 +589,8 @@ function displayFach(fachkuerzel, dozentkuerzel, nachname, vorname, bez) {
 			},
 			error: function(jqXHR, textStatus, errorThrown) {
 				if(jqXHR.status == 200 && textStatus == "parsererror") {
-					//alert('Vielen Dank. Ihre Evaluation wurde erfolgreich übertragen.');
-					//document.getElementById('detailPage').setAttribute('class', 'detailPage');
+					alert('Vielen Dank. Ihre Evaluation wurde erfolgreich übertragen.');
+					document.getElementById('detailPage').setAttribute('class', 'detailPage');
 				}
 				else {
 					alert('Es wurde ein Fehler aufgetreten. Die App muss neu gestartet werden!');
