@@ -590,7 +590,7 @@ function displayFach(fachkuerzel, dozentkuerzel, nachname, vorname, bez) {
 					alert('might work');
 				}
 				else {
-					//alert('Post doesn\'t work');
+					alert(jqXHR.status + " " textStatus + " " + errorThrown);
 				}
 				
 		}
