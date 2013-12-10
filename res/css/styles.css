@@ -350,16 +350,17 @@ h1 {
 	height: 100px;
 }
 
-.btnSubmit {
+#btnSubmit {
 	margin-top: 15px;
-	width: 100%;
+	width: 98%;
 	height: 40px;
 	line-height: 40px;
-	color: black;
+	font-size: 20px;
+	background-color: #0B2F56;
+	color: white;
 	border:2px solid;
 	border-radius: 10px;
-	border-color: #A5A5A5;
-	background-color: #A5A5A5;
+	/*border-color: #A5A5A5;*/
 	text-align: center;
 
 }
