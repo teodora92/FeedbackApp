@@ -3,7 +3,7 @@
 		xmlns:gap = "http://phonegap.com/ns/1.0"
         id = "com.damiangawenda.fhevaluation"
         version = "0.0.1">
-    <name>Evaluation Prototype</name>
+    <name>Evaluation Prototyp</name>
     <description>
         Mobile Anwendung für Evaluation
     </description>
