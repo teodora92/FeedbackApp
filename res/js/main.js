@@ -573,7 +573,7 @@ function displayFach(fachkuerzel, dozentkuerzel, nachname, vorname, bez) {
 		
 		var data = $('#bewertungForm').serializeArray();
 		//console.log(data);
-		alert('click once');
+		//alert('click once');
 		$.ajax({
 			type: 'POST',
 			crossDomain: true,
