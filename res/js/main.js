@@ -79,7 +79,7 @@ function displayFaecher() {
 	$('#scroller').append('<ul id="thelist"></ul>');
 	
 	
-	$('#wrapper').prepend('<h2>Wähle Dein Fach</h2>');
+	$('#wrapper').prepend('<h2>Wähle ein Fach aus</h2>');
 	
 	var bez, nachname, vorname, fachkuerzel, dozentkuerzel;
 	var fach;
@@ -582,17 +582,18 @@ function displayFach(fachkuerzel, dozentkuerzel, nachname, vorname, bez) {
 				//alert('yes');
 				//$('#listItem' + feedback_id).data('votes', votes);
 				//populateDetail(object); 
-				alert('works');
+				alert('Vielen Dank. Ihre Evaluation wurde erfolgreich übertragen.');
+				document.getElementById('detailPage').setAttribute('class', 'detailPage');
+				
 			},
 			error: function(jqXHR, textStatus, errorThrown) {
-				//alert(jqXHR.status + " " + textStatus + " " + errorThrown);
-				if(jqXHR.status == 0) {
-					alert('might work');
+				if(jqXHR.status == 200 && textStatus == "parsererror") {
+					alert('Vielen Dank. Ihre Evaluation wurde erfolgreich übertragen.');
+					document.getElementById('detailPage').setAttribute('class', 'detailPage');
 				}
 				else {
-					alert(jqXHR.status + " " + textStatus + " " + errorThrown);
+					alert('Es wurde ein Fehler aufgetreten. Die App muss neu gestartet werden!');
 				}
-				
 		}
 		
 	});
