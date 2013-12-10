@@ -537,7 +537,7 @@ function displayFach(fachkuerzel, dozentkuerzel, nachname, vorname, bez) {
 	$('#bewertungForm').append('<h2>Welche Themen könnten gekürzt werden?</h2><textarea name="frage5" class="textarea"></textarea><br>');
 	$('#bewertungForm').append('<h2>Sonstige Anmerkungen oder Verbesserungsvorschläge!</h2><textarea name="frage6" class="textarea"></textarea><br>');
 	
-	$('#detailContent').append('<button id="btnSubmit">Submit</button>');
+	$('#detailContent').append('<div id="btnSubmit">Submit</div>');
 	document.getElementById("detailPage").setAttribute('class', 'detailPageVis');
 	
 	$('.slider').next().val('3');
@@ -614,31 +614,6 @@ function displayFach(fachkuerzel, dozentkuerzel, nachname, vorname, bez) {
 	}, 5000);
 
 	
-	
-	// fachkuerzel, dozentkuerzel, 6 questions
-	// if this doesn't work, do a proxy over internet services or another server
-	/*$.ajax({
-		type: 'POST',
-		crossDomain: true,
-		url: 'http://edb.gm.fh-koeln.de/services/evaluation_service.jsp?call=setEvaluation',
-		//data: formToJSON(feedback_id, votes),
-		success: function(data, textStatus, jqXHR) {
-			//alert('yes');
-			//$('#listItem' + feedback_id).data('votes', votes);
-			//populateDetail(object); 
-			alert('works');
-		},
-		error: function(jqXHR, textStatus, errorThrown) {
-			//alert(jqXHR.status + " " + textStatus + " " + errorThrown);
-			if(jqXHR.status == 0) {
-				//alert('might work');
-			}
-			else {
-				//alert('Post doesn\'t work');
-			}
-		}
-		
-	});*/
 }
 
 function displaySelectMenu() {
